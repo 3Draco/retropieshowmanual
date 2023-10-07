@@ -17,7 +17,9 @@ Edit the webfsd.conf file. You can use a text editor of your choice, e.g., nano:
 `sudo nano /etc/webfs/webfsd.conf`
 
 port="80"
+
 web_root="/home/pi/RetroPie/manual/www/"
+
 web_index="index.html"
 
 --------------------------------------------------------
@@ -25,10 +27,12 @@ web_index="index.html"
 3 - Create Folders and Copy Files:
 Create the necessary folders if they don't already exist:
 
-`mkdir -p /home/pi/RetroPie/manual/www/
-mkdir -p /home/pi/RetroPie/manual/manual/`
+`mkdir -p /home/pi/RetroPie/manual/www/`
+
+`mkdir -p /home/pi/RetroPie/manual/manual/`
 
 Copy index.html to the www folder.
+
 Copy nomanual.pdf and retropie.pdf to the manual folder.
 
 --------------------------------------------------------
