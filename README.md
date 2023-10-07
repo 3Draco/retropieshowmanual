@@ -2,7 +2,13 @@
 
 ## Warning: The use of these instructions and files is done at your own risk.
 
+###*The game manual should be in the ROM directory \media\manuals and have the same name as the game. Only PDFs are supported*###
 
+###*After installation, you can reach the web server that displays the game instructions under the Retropie IP.*###
+
+--------------------------------------------------------
+
+--------------------------------------------------------
 
 1 - Install webfs and Configure Web Server:
 Install the webfs web server by running the following command:
