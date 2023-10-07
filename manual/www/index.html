@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF-Anzeige</title>
+    <style>
+        /* Stil für den runden Schalter */
+        .switch-container {
+            display: flex;
+            align-items: center;
+            margin-left: 10px; /* Abstand rechts hinzufügen */
+            margin-top: 5px; /* Abstand oben hinzufügen */
+            margin-bottom: 5px; /* Abstand unten hinzufügen */
+        }
+
+        .switch-label {
+            margin-right: 10px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px; /* Kleinere Breite für den Schalter */
+            height: 20px; /* Kleinere Höhe für den Schalter */
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 20px; /* Runde Form */
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px; /* Kleinere Höhe für den Schaltergriff */
+            width: 16px; /* Kleinere Breite für den Schaltergriff */
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 50%; /* Runde Form */
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(20px); /* Kleinere Verschiebung */
+            -ms-transform: translateX(20px); /* Kleinere Verschiebung */
+            transform: translateX(20px); /* Kleinere Verschiebung */
+        }
+
+        /* Stil für das eingebettete PDF */
+        body, html {
+            height: 100%; /* Vollständige Höhe des Viewports */
+            margin: 0; /* Entfernt den Standardseitenrand */
+            overflow: hidden; /* Verhindert das Scrollen */
+        }
+
+        .pdf-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .pdf-object {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Schalter und Text neben dem Schalter -->
+    <div class="switch-container">
+        <label class="switch-label" for="reloadSwitch"> Autoreload</label>
+        <label class="switch">
+            <input type="checkbox" id="reloadSwitch">
+            <span class="slider round"></span>
+        </label>
+    </div>
+
+    <!-- PDF einbetten -->
+    <div class="pdf-container">
+        <object id="pdfObject" class="pdf-object" data="manual.pdf" type="application/pdf">
+            Ihr Browser unterstützt keine PDF-Anzeige. Sie können die PDF-Datei <a href="manual.pdf">hier herunterladen</a>.
+        </object>
+    </div>
+
+    <script>
+        // JavaScript, um den Schalter zu überwachen und das PDF alle 30 Sekunden neu zu laden
+        const reloadSwitch = document.getElementById('reloadSwitch');
+        const pdfObject = document.getElementById('pdfObject');
+
+    // Aktiviere den Schalter beim Laden der Seite
+    document.addEventListener('DOMContentLoaded', function () {
+        reloadSwitch.checked = true; // Schalter aktivieren
+        startAutoReload(); // PDF-Aktualisierung starten
+    });
+
+        reloadSwitch.addEventListener('change', function () {
+            if (this.checked) {
+                // Aktiviere das Aktualisieren des PDFs alle 30 Sekunden
+                startAutoReload();
+            } else {
+                // Deaktiviere das Aktualisieren des PDFs
+                stopAutoReload();
+            }
+        });
+
+        let intervalId;
+
+        function startAutoReload() {
+            intervalId = setInterval(() => {
+                // Ändern Sie die Datenquelle des PDF-Objekts, um das PDF neu zu laden
+                const timestamp = Date.now(); // Fügen Sie einen Zeitstempel hinzu, um das Caching zu verhindern
+                pdfObject.data = `manual.pdf?t=${timestamp}`;
+            }, 30000); // 10000 Millisekunden = 10 Sekunden
+        }
+
+        function stopAutoReload() {
+            clearInterval(intervalId);
+        }
+    </script>
+</body>
+</html>
