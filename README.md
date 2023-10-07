@@ -89,6 +89,7 @@ cp /home/pi/RetroPie/manual/retropie.pdf /home/pi/RetroPie/manual/www/manual.pdf
 7 - Make the "runcommand-onend.sh" and "runcommand-onstart.sh" file executable using the chmod command:
 
 chmod +x runcommand-onend.sh
+
 chmod +x runcommand-onstart.sh
 
 
