@@ -1,16 +1,20 @@
 # retropieshowmanual
 
+## Warning: The use of these instructions and files is done at your own risk.
+
+
+
 1 - Install webfs and Configure Web Server:
 Install the webfs web server by running the following command:
 
-sudo apt-get -y install webfs
+`sudo apt-get -y install webfs`
 
 --------------------------------------------------------
 
 2 - Change the Web Server settings:
 Edit the webfsd.conf file. You can use a text editor of your choice, e.g., nano:
 
-sudo nano /etc/webfs/webfsd.conf
+`sudo nano /etc/webfs/webfsd.conf`
 
 port="80"
 web_root="/home/pi/RetroPie/manual/www/"
@@ -21,8 +25,8 @@ web_index="index.html"
 3 - Create Folders and Copy Files:
 Create the necessary folders if they don't already exist:
 
-mkdir -p /home/pi/RetroPie/manual/www/
-mkdir -p /home/pi/RetroPie/manual/manual/
+`mkdir -p /home/pi/RetroPie/manual/www/
+mkdir -p /home/pi/RetroPie/manual/manual/`
 
 Copy index.html to the www folder.
 Copy nomanual.pdf and retropie.pdf to the manual folder.
@@ -82,15 +86,15 @@ Copy nomanual.pdf and retropie.pdf to the manual folder.
   
 5 - Insert the following line in to runcommand-onend.sh
 
-cp /home/pi/RetroPie/manual/retropie.pdf /home/pi/RetroPie/manual/www/manual.pdf > /dev/null 2>&1
+`cp /home/pi/RetroPie/manual/retropie.pdf /home/pi/RetroPie/manual/www/manual.pdf > /dev/null 2>&1`
 
 --------------------------------------------------------
 
 7 - Make the "runcommand-onend.sh" and "runcommand-onstart.sh" file executable using the chmod command:
 
-chmod +x runcommand-onend.sh
+`chmod +x runcommand-onend.sh`
 
-chmod +x runcommand-onstart.sh
+`chmod +x runcommand-onstart.sh`
 
 
 
